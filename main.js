@@ -18,6 +18,8 @@
 
 
 fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04')
+
+//&qbandname for each url
 .then(
   function(response) {
     if (response.status !== 200) {
@@ -31,27 +33,26 @@ fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501
       let searchBar = document.getElementById('searchBar');
       // console.log(band);
       function search() {
-        fetch()
-        for (i = 0; i < data.title; i++) {
-          //make the input value equal the pulled api data
-          searchBar.value = title;
-          title = searchBar.value;
-          console.log(title);
+
+        SC.initialize({
+          client_id: '8538a1744a7fdaa59981232897501e04'
+        });
+
+        SC.get('/tracks', {
+          q: 'buskers', license: 'cc-by-sa'
+        }).then(function(tracks) {
+          console.log(tracks);
+        });
+
+        // fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04')
+        // for (i = 0; i < data.title; i++) {
+        //   //make the input value equal the pulled api data
+        //   searchBar.value = title;
+        //   title = searchBar.value;
+        //   console.log(title);
 
 
-          // SC.initialize({
-          //   client_id: '8538a1744a7fdaa59981232897501e04'
-          //   });
-          //
-          //   // find all sounds of buskers licensed under 'creative commons share alike'
-          //   SC.get('/tracks', {
-          //     q: 'rabbit', license: 'cc-by-sa'
-          //   }).then(function(tracks) {
-          //     console.log(tracks);
-          //   });
-
-        }
-      }
+      }//search function closing bracket
 
       let markup = `
           <div>
