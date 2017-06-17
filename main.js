@@ -16,57 +16,112 @@
 
 // 5. Create a way to listen for a click that will play the song in the audio play
 
+let searchBar = document.getElementById('searchBar');
 
-fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04')
+function search() {
 
-//&qbandname for each url
-.then(
-  function(response) {
-    if (response.status !== 200) {
-      console.log('Looks like there was a problem. Status Code: ' + response.status);
-      return;
-    }
-    response.json().then(function(data) {
+  fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04&q=' + searchBar) //Add q = the variable that is the value of the searchbar
+
+  .then(
+    function(response) {
+      if(response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' + response.status);
+        return
+      }
+      response.json().then(function(data) {
+      console.log(data.results[0].title);
 
       let title = data[0].title;
-      let band = data[0].user.username;
-      let searchBar = document.getElementById('searchBar');
-      // console.log(band);
-      function search() {
 
-        SC.initialize({
-          client_id: '8538a1744a7fdaa59981232897501e04'
-        });
+      for (i=0; i < title; i++) {
+        searchBar.value = title;
+        title = searchBar.value;
+        console.log(title);
 
-        SC.get('/tracks', {
-          q: 'buskers', license: 'cc-by-sa'
-        }).then(function(tracks) {
-          console.log(tracks);
-        });
+        let markup = `
+        <div>
+          <ul>
+            <li>${data[0].title}</li>
+            <li>searchBar.value</li>
 
-        // fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04')
+          </ul>
+        </div>
+        `
+        document.body.innerHTML += markup;
+      }
+
+      }
+    )
+    }
+
+  )
+
+}
+
+
+
+// fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04')
+//
+//&qbandname for each url
+// .then(
+//   function(response) {
+//     if (response.status !== 200) {
+//       console.log('Looks like there was a problem. Status Code: ' + response.status);
+//       return;
+//     }
+//     response.json().then(function(data) {
+//
+//       let title = data[0].title;
+//       let band = data[0].user.username;
+//       let searchBar = document.getElementById('searchBar');
+//       // console.log(band);
+//       function search() {
+// //
+// //
+// //
+// //
+// //
+// // }
+// //
+// //         // SC.initialize({
+// //         //   client_id: '8538a1744a7fdaa59981232897501e04'
+// //         // });
+// //         //
+// //         // SC.get('/tracks', {
+// //         //   q: 'buskers', license: 'cc-by-sa'
+// //         // }).then(function(tracks) {
+// //         //   console.log(tracks);
+// //         // });
+// //
+// //         // fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04')
         // for (i = 0; i < data.title; i++) {
         //   //make the input value equal the pulled api data
         //   searchBar.value = title;
         //   title = searchBar.value;
         //   console.log(title);
-
-
-      }//search function closing bracket
-
-      let markup = `
-          <div>
-            <ul>
-              <li>${data[0].title}</li>
-              <!-- make search function above output value onto list below -->
-              <li>searchBar.value</li>
-
-            </ul>
-          </div>
-      `
-      document.body.innerHTML += markup;
-
-    }
-    )
-  }
-)
+// //
+// //
+// //       }//search function closing bracket
+// //
+// //       let markup = `
+          // <div>
+          //   <ul>
+          //     <li>${data[0].title}</li>
+          //     <!-- make search function above output value onto list below -->
+          //     <li>searchBar.value</li>
+          //
+          //   </ul>
+          // </div>
+// //       `
+// //       document.body.innerHTML += markup;
+// //
+// //     }
+// //     )
+// //   }
+// // )
+//
+//
+//
+// //One functino for tracks with specific url, and fetch within, that prints the markup/innnerhtml from a for loop.
+//
+// //Another seperate function doing the same thing but for bands.
