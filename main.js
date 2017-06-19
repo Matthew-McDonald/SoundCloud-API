@@ -24,6 +24,11 @@ searchBar.focus();
 button.onclick = search;
 
 function search() {
+  searchTracks();
+  searchBand();
+}
+
+function searchTracks() {
   let string = searchBar.value;
   fetch('https://api.soundcloud.com/tracks/?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f&q=' + string) //Add q = the variable that is the value of the searchbar
 
@@ -34,23 +39,20 @@ function search() {
         return
       }
       response.json().then(function(data) {
-      console.log(data[0].title);
+      // console.log(data[0].title);
 
       let title = data;
 
       for (i=0; i < title.length; i++) {
-        // searchBar.value = title;
-        // title = searchBar.value;
-        // console.log(title);
 
         let markup = `
         <div>
-          <ul>
-            <li>${title[i].title}</li>
-          </ul>
+            <img src="${title[i].avatar_url}"/>
+            <p>${title[i].title}</p>
+            <p>${title[i].user.username}</p>
         </div>
         `
-        document.body.innerHTML += markup;
+        document.getElementById('tracks-section').innerHTML += markup;
       }
       }
     )
@@ -58,6 +60,35 @@ function search() {
   )
 }
 
+function searchBand() {
+  let string = searchBar.value;
+  fetch('https://api.soundcloud.com/users/?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f&q=' + string) //Add q = the variable that is the value of the searchbar
+
+  .then(
+    function(response) {
+      if(response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' + response.status);
+        return
+      }
+      response.json().then(function(data) {
+      console.log(data[0].username);
+
+      let bands = data;
+
+      for (i=0; i < bands.length; i++) {
+
+        let markup = `
+        <div>
+            <p>${bands[i].username}</p>
+        </div>
+        `
+        document.getElementById('bands-section').innerHTML += markup;
+      }
+      }
+    )
+    }
+  )
+}
 // search();
 
 // fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04')
