@@ -1,3 +1,25 @@
+*, *:before, *after {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #60d9f1;
+}
+
+.grid-child{
+  width: 15vw;
+}
+
+#tracks-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: auto;
+  width:90vw;
+}
+
+#bands-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: auto;
+  width:90vw;
 }

@@ -21,6 +21,13 @@ let button = document.getElementById('button');
 
 searchBar.focus();
 
+document.addEventListener("keypress", function(e){
+  let key = e.keyCode;
+  if(key === 13) {
+    search();
+  }
+});
+
 button.onclick = search;
 
 function search() {
@@ -42,17 +49,18 @@ function searchTracks() {
       // console.log(data[0].title);
 
       let title = data;
+      document.getElementById('tracks-section').innerHTML = "";
 
       for (i=0; i < title.length; i++) {
 
         let markup = `
-        <div>
-            <img src="${title[i].avatar_url}"/>
+        <div class="grid-child">
+            <img src="${title[i].user.avatar_url}">
             <p>${title[i].title}</p>
             <p>${title[i].user.username}</p>
         </div>
         `
-        document.getElementById('tracks-section').innerHTML += markup;
+        document.getElementById("tracks-section").innerHTML += markup;
       }
       }
     )
@@ -74,11 +82,13 @@ function searchBand() {
       console.log(data[0].username);
 
       let bands = data;
+      document.getElementById('bands-section').innerHTML = "";
 
       for (i=0; i < bands.length; i++) {
 
         let markup = `
-        <div>
+        <div class="grid-child">
+            <img src="${bands[i].avatar_url}"/>
             <p>${bands[i].username}</p>
         </div>
         `
