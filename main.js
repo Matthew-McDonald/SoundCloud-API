@@ -17,7 +17,9 @@
 // 5. Create a way to listen for a click that will play the song in the audio play
 
 let searchBar = document.getElementById('searchBar');
-let button = document.getElementById('button');
+let searchButton = document.getElementById('searchButton');
+
+let audio = document.getElementById("audio-player");
 
 searchBar.focus();
 
@@ -28,7 +30,7 @@ document.addEventListener("keypress", function(e){
   }
 });
 
-button.onclick = search;
+searchButton.onclick = search;
 
 function search() {
   searchTracks();
@@ -50,6 +52,7 @@ function searchTracks() {
 
       let title = data;
       document.getElementById('tracks-section').innerHTML = "";
+      //Clears the innerhtml before a new search
 
       for (i=0; i < title.length; i++) {
 
@@ -58,10 +61,31 @@ function searchTracks() {
             <img src="${title[i].user.avatar_url}">
             <p>${title[i].title}</p>
             <p>${title[i].user.username}</p>
+            <button id="play" value= "${title[i].stream_url}">Play</button>
         </div>
         `
+        //Button added each time through for loop and targets the stream_url of the i
+
         document.getElementById("tracks-section").innerHTML += markup;
+        //Adds markup html to page
       }
+      document.getElementById('tracks-section').addEventListener("click", function(e) {
+        if(e.target && e.target.id == "play") {
+          //add click event listener to the play button
+          let url = e.target.value;
+          //sets the url to the value of the button id in the tracks-section
+          url += "?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f";
+          //ads the client id to the url
+          audio.removeAttribute('src');
+          //removes the current src audio
+          audio.setAttribute('src', url);
+          //adds the new url as the audio src
+          audio.setAttribute('autoplay', true);
+          //tell audio player to auto play when clicked
+
+        }
+      })
+
       }
     )
     }
@@ -79,10 +103,11 @@ function searchBand() {
         return
       }
       response.json().then(function(data) {
-      console.log(data[0].username);
+      // console.log(data[0].username);
 
       let bands = data;
       document.getElementById('bands-section').innerHTML = "";
+      //Clears the innerhtml before a new search
 
       for (i=0; i < bands.length; i++) {
 
@@ -93,6 +118,7 @@ function searchBand() {
         </div>
         `
         document.getElementById('bands-section').innerHTML += markup;
+        //Adds markup html to page
       }
       }
     )
