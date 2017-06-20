@@ -63,9 +63,9 @@ function searchTracks() {
 
         let markup = `
         <div class="grid-child">
-            <img src="${title[i].user.avatar_url}">
+            <img class="artist-image"src="${title[i].user.avatar_url}">
             <p>${title[i].title}</p>
-            <p>${title[i].user.username}</p>
+            <p>By: ${title[i].user.username}</p>
             <button id="play" value= "${title[i].stream_url}">Play</button>
         </div>
         `
