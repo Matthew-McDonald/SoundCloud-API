@@ -15,6 +15,20 @@ body {
   text-align: center;
 }
 
+.music-player {
+
+}
+
+#searchBar {
+  background-color: lightblue;
+  outline: none;
+}
+
+#searchButton {
+  background-color: lightblue;
+  outline: none;
+}
+
 .grid-child{
   width: 15vw;
   background-color: rgba(255, 255, 255, 0.5);
@@ -27,6 +41,7 @@ body {
 .artist-image {
   border-radius: 25%;
 }
+
 
 #tracks-section {
   display: grid;

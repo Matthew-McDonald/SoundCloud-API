@@ -25,8 +25,8 @@ searchBar.focus();
 //starts the cursor in the text field automatically
 
 document.addEventListener("keypress", function(e){
-  let key = e.keyCode;
-  if(key === 13) {
+  let key = e.which || e.keyCode;
+  if (key === 13) {
     search();
   }
 });
