@@ -22,6 +22,7 @@ let searchButton = document.getElementById('searchButton');
 let audio = document.getElementById("audio-player");
 
 searchBar.focus();
+//starts the cursor in the text field automatically
 
 document.addEventListener("keypress", function(e){
   let key = e.keyCode;
@@ -31,12 +32,16 @@ document.addEventListener("keypress", function(e){
 });
 
 searchButton.onclick = search;
+//link search button to search function when clicked
 
 function search() {
   searchTracks();
   searchBand();
 }
+//search function triggers both a track search and band search
 
+
+//SEARCH TRACKS FUNCTION
 function searchTracks() {
   let string = searchBar.value;
   fetch('https://api.soundcloud.com/tracks/?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f&q=' + string) //Add q = the variable that is the value of the searchbar
@@ -69,6 +74,8 @@ function searchTracks() {
         document.getElementById("tracks-section").innerHTML += markup;
         //Adds markup html to page
       }
+
+      //AUDIO EVENT LISTENER
       document.getElementById('tracks-section').addEventListener("click", function(e) {
         if(e.target && e.target.id == "play") {
           //add click event listener to the play button
@@ -91,6 +98,8 @@ function searchTracks() {
     }
   )
 }
+
+//SEARCH BAND FUNCTION
 
 function searchBand() {
   let string = searchBar.value;
