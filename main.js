@@ -74,6 +74,11 @@ function searchTracks() {
         document.getElementById("tracks-section").innerHTML += markup;
         //Adds markup html to page
       }
+      let markupTrackHeader = `
+        <h1>Tracks</h1>
+      `
+      //Adds the Tracks title only once the search starts
+      document.getElementById('tracks-header').innerHTML += markupTrackHeader;
 
       //AUDIO EVENT LISTENER
       document.getElementById('tracks-section').addEventListener("click", function(e) {
@@ -122,6 +127,7 @@ function searchBand() {
       for (i=0; i < bands.length; i++) {
 
         let markup = `
+
         <div class="grid-child">
             <img src="${bands[i].avatar_url}"/>
             <p>${bands[i].username}</p>
@@ -130,6 +136,11 @@ function searchBand() {
         document.getElementById('bands-section').innerHTML += markup;
         //Adds markup html to page
       }
+        let markupBandHeader = `
+          <h1>Artists</h1>
+        `
+        document.getElementById('artist-header').innerHTML += markupBandHeader;
+        //Adds the Artists title only once the search starts
       }
     )
     }
