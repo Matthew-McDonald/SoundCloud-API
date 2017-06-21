@@ -89,7 +89,8 @@ function searchTracks() {
           //adds the new url as the audio src
           audio.setAttribute('autoplay', true);
           //tell audio player to auto play when clicked
-
+          audio.classList.add("reveal");
+          //adds the class reveal which reveals the music player
         }
       })
 
