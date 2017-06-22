@@ -11,12 +11,19 @@ body {
   background-size: cover;
 }
 
-.top-container {
+#topContainer {
   text-align: center;
+  margin-top: 45vh;
 }
 
 h2 {
   color: white;
+  font-family: 'Indie Flower';
+  font-size: 30pt;
+}
+
+audio {
+  display: none;
 }
 
 .music-player {
@@ -27,38 +34,44 @@ h2 {
   transition: 3s;
 }
 audio::-webkit-media-controls-panel {
-  background-color: black;
+  background-color: transparent;
+  border-radius: 25%;
 }
+/*STYLE AUDIO PLAYER*/
 
-.search {
+
+/*.player {
   margin-top: 30px;
-}
-.player {
-  margin-top: 30px;
-}
+}*/
 
 input::placeholder {
-  font-style: italic;
+
+  color: black;
+  font-family: 'Indie Flower';
 }
 input, select, textarea {
-color: #757575;
+color: black;
 }
 
 #searchBar {
-  background-color: transparent;
   outline: none;
-  width: 25vw;
+  width: auto;
   border: none;
-  border-bottom: thin solid white;
+  /*border-bottom: thin solid white;*/
   /*height: 5vw;*/
-  font-size: 16pt;
+  font-size: 50pt;
   text-transform: capitalize;
   text-align: center;
   font-style: italic;
+  background-color: rgba(255, 255, 255, .2);
+  border-radius: 10px;
+  font-family: 'Indie Flower';
+  -webkit-animation-duration: 1.8s;
+  -moz-animation-duration: 1.8s;
 }
 
 #searchBar:hover {
-  transform: scale(2);
+  transform: scale(1.5);
   transition: 1s;
 }
 
@@ -71,16 +84,51 @@ color: #757575;
 }
 
 .grid-child{
-  width: 15vw;
-  background-color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 30px;
-  border-radius: 25%;
+  background-color: rgba(255, 255, 255, .2);
+  /*margin-bottom: 30px;*/
+  border-radius: 10px;
   text-align: center;
-  padding-top: 5px;
+  /*padding-top: 5px;*/
+  font-family: 'Indie Flower';
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 5px;
+  /*width: 20vw;*/
+  /*height: 20vw;*/
+}
+.grid-child-one {
+  /*width: 9vw;*/
+  /*height: 9vw;*/
+  /*margin-top: 5vh;
+  margin-bottom: 5vh;*/
+}
+.grid-child-two {
+  /*margin-top: 5vh;
+  margin-bottom: 5vh;*/
+  width: 15vw;
+  /*height: 9vw;*/
+}
+
+.grid-child:hover {
+  transform: scale(1.1);
+}
+
+.band-grid-child {
+  background-color: rgba(255, 255, 255, .2);
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Indie Flower';
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 5px;
 }
 
 .artist-image {
-  border-radius: 25%;
+  border-radius: 50%;
+  /*width: 9vw;
+  height: 9vw;*/
 }
 
 
@@ -88,16 +136,12 @@ color: #757575;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: auto;
-  width:90vw;
-}
-
-.grid-child:hover {
-  transform: scale(1.1);
+  width:95vw;
 }
 
 #bands-section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: auto;
-  width:90vw;
+  width:95vw;
 }
