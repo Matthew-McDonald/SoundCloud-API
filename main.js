@@ -1,26 +1,16 @@
-/*
-  Here is a guide for the steps you could take:
-*/
 
-// 1. First select and store the elements you'll be working with
+//Create a favorites list to add favorite songs
+// create lightbox effect, so you you can click on the search result and get more information
 
 
-// 2. Create your `onSubmit` event for getting the user's search term
-
-
-// 3. Create your `fetch` request that is called after a submission
-
-
-// 4. Create a way to append the fetch results to your page
-
-
-// 5. Create a way to listen for a click that will play the song in the audio play
 
 let searchBar = document.getElementById('searchBar');
 let searchButton = document.getElementById('searchButton');
 
 let audio = document.getElementById("audio-player");
 let topContainer = document.getElementById('topContainer');
+
+let favoritesList = document.getElementById('favoritesList');
 
 searchBar.focus();
 //starts the cursor in the text field automatically
@@ -77,6 +67,7 @@ function searchTracks() {
             <p>${title[i].title}</p>
             <p>By: ${title[i].user.username}</p>
             <button id="play" value= "${title[i].stream_url}">Play</button>
+            <button id="favorite" value= "${title[i].title}">Favorite</button>
           </div>
         </div>
         `
@@ -114,6 +105,8 @@ function searchTracks() {
         }
       })
 
+
+
       }
     )
     }
@@ -144,8 +137,8 @@ function searchBand() {
         let markup = `
 
         <div class="band-grid-child">
-            <img class="artist-image" src="${bands[i].avatar_url}"/>
-            <p>${bands[i].username}</p>
+            <img class="artist-image-band" src="${bands[i].avatar_url}"/>
+            <a href="${bands[i].permalink_url}">${bands[i].username}</a>
         </div>
         `
         document.getElementById('bands-section').innerHTML += markup;
