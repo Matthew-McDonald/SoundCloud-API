@@ -64,8 +64,10 @@ function searchTracks() {
             <img class="artist-image" src="${title[i].user.avatar_url}">
           </div>
           <div class="grid-child-two">
+            <h3 class="track-subheader">Track</h3>
             <p>${title[i].title}</p>
-            <p>By: ${title[i].user.username}</p>
+            <h3 class="artist-subheader">Artist</h3>
+            <p>${title[i].user.username}</p>
             <button id="play" value= "${title[i].stream_url}">Play</button>
             <button id="favorite" value= "${title[i].title}">Favorite</button>
           </div>
