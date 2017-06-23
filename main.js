@@ -1,9 +1,3 @@
-
-//Create a favorites list to add favorite songs
-// create lightbox effect, so you you can click on the search result and get more information
-
-
-
 let searchBar = document.getElementById('searchBar');
 let searchButton = document.getElementById('searchButton');
 
@@ -11,6 +5,7 @@ let audio = document.getElementById("audio-player");
 let topContainer = document.getElementById('topContainer');
 
 let favoritesList = document.getElementById('favoritesList');
+let tracksSection = document.querySelector(".grid-favoritesList");
 
 searchBar.focus();
 //starts the cursor in the text field automatically
@@ -31,14 +26,15 @@ function search() {
   audio.style = "display: inline-block";
   topContainer.style = "margin-top: 10vh";
   topContainer.style.transition = "2s";
-  searchBar.style = "font-size: 20pt";
+  searchBar.style = "font-size: 22pt";
   searchBar.style.transition = "2s";
 
 }
 //search function triggers both a track search and band search
 
 
-//SEARCH TRACKS FUNCTION
+//SEARCH TRACKS FUNCTION*****************************************************
+
 function searchTracks() {
   let string = searchBar.value;
   fetch('https://api.soundcloud.com/tracks/?client_id=095fe1dcd09eb3d0e1d3d89c76f5618f&q=' + string) //Add q = the variable that is the value of the searchbar
@@ -88,7 +84,8 @@ function searchTracks() {
       //Adds the Tracks title only once the search starts
       document.getElementById('tracks-header').innerHTML += markupTrackHeader;
 
-      //AUDIO EVENT LISTENER
+//AUDIO EVENT LISTENER WITHIN TRACK SEARCH*********************************
+
       document.getElementById('tracks-section').addEventListener("click", function(e) {
         if(e.target && e.target.id == "play") {
           //add click event listener to the play button
@@ -106,7 +103,19 @@ function searchTracks() {
           //adds the class reveal which reveals the music player
         }
       })
+//FAVORITE EVENT LISTENER WITHIN TRACK SEARCH********************************
 
+      document.getElementById('tracks-section').addEventListener("click", function(e) {
+        if (e.target && e.target.id == "favorite") {
+          let favoriteContent = e.target.value;
+          let newFavoriteLi = document.createElement('li');
+          newFavoriteLi.textContent = favoriteContent;
+          favoritesList.appendChild(newFavoriteLi);
+          tracksSection.classList.add("revealFav");
+          console.log(favoritesList);
+
+        }
+      })
 
 
       }
@@ -115,7 +124,7 @@ function searchTracks() {
   )
 }
 
-//SEARCH BAND FUNCTION
+//SEARCH BAND FUNCTION********************************************************
 
 function searchBand() {
   let string = searchBar.value;
@@ -161,70 +170,3 @@ function searchBand() {
     }
   )
 }
-// search();
-
-// fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04')
-//
-//&qbandname for each url
-// .then(
-//   function(response) {
-//     if (response.status !== 200) {
-//       console.log('Looks like there was a problem. Status Code: ' + response.status);
-//       return;
-//     }
-//     response.json().then(function(data) {
-//
-//       let title = data[0].title;
-//       let band = data[0].user.username;
-//       let searchBar = document.getElementById('searchBar');
-//       // console.log(band);
-//       function search() {
-// //
-// //
-// //
-// //
-// //
-// // }
-// //
-// //         // SC.initialize({
-// //         //   client_id: '8538a1744a7fdaa59981232897501e04'
-// //         // });
-// //         //
-// //         // SC.get('/tracks', {
-// //         //   q: 'buskers', license: 'cc-by-sa'
-// //         // }).then(function(tracks) {
-// //         //   console.log(tracks);
-// //         // });
-// //
-// //         // fetch('https://api.soundcloud.com/tracks?client_id=8538a1744a7fdaa59981232897501e04')
-        // for (i = 0; i < data.title; i++) {
-        //   //make the input value equal the pulled api data
-        //   searchBar.value = title;
-        //   title = searchBar.value;
-        //   console.log(title);
-// //
-// //
-// //       }//search function closing bracket
-// //
-// //       let markup = `
-          // <div>
-          //   <ul>
-          //     <li>${data[0].title}</li>
-          //     <!-- make search function above output value onto list below -->
-          //     <li>searchBar.value</li>
-          //
-          //   </ul>
-          // </div>
-// //       `
-// //       document.body.innerHTML += markup;
-// //
-// //     }
-// //     )
-// //   }
-// // )
-//
-//
-//
-// //One functino for tracks with specific url, and fetch within, that prints the markup/innnerhtml from a for loop.
-//
-// //Another seperate function doing the same thing but for bands.
